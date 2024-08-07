@@ -2,7 +2,7 @@ Here’s a refined version tailored for your workout website:
 
 ---
 
-# Managing Autoplay Settings for Your Workout Website
+# Managing Autoplay Settings for my Workout Website
 
 To ensure an optimal experience with the audio features on my workout website, you might need to adjust your browser's autoplay settings. Follow the steps below for various browsers to customize how media plays automatically.
 
