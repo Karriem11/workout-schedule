@@ -10,7 +10,7 @@
             color: #e0e0e0; /* Light gray text color */
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Hide scrollbars if video extends beyond viewport */
+            overflow: auto; /* Allow scrolling */
         }
         .video-background {
             position: fixed;
@@ -20,6 +20,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -1; /* Place video behind content */
+            height: 100vh;
         }
         .audio-background {
             display: none; /* Hide audio element */
@@ -68,6 +69,84 @@
         .about-me h2 {
             color: #b0bec5;
             margin-bottom: 10px;
+        }
+
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 12px; /* Width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e; /* Dark background for the scrollbar track */
+            border-radius: 8px; /* Rounded corners for the track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00bfff; /* Bright color for the scrollbar thumb */
+            border-radius: 8px; /* Rounded corners for the thumb */
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #009ac7; /* Slightly darker color on hover */
+        }
+
+        /* Update Tab Styles */
+        .update-tab {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.5);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .update-tab.open {
+            transform: translateX(0);
+        }
+
+        .update-tab-header {
+            background-color: #00bfff;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #00bfff;
+        }
+
+        .update-tab-content {
+            padding: 15px;
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+
+        .update-tab-content h3 {
+            color: #b0bec5;
+        }
+
+        .update-tab-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .update-tab-content li {
+            margin-bottom: 8px;
+        }
+
+        .toggle-update-tab {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #00bfff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
         }
     </style>
 </head>
@@ -123,14 +202,82 @@
             <p class="note">Routine: Start your day with a gentle wake-up, such as a stretch or a refreshing glass of water. Try to get some natural light exposure to help regulate your internal clock.</p>
         </div>
 
+        <div class="tips">
+            <h2>Muscle Building Tips</h2>
+
+            <h3>Lift Weights:</h3>
+            <ul>
+                <li><strong>Big Exercises:</strong> Focus on fundamental movements like squats and bench presses.</li>
+                <li><strong>Get Heavier:</strong> Gradually increase the weight you lift to build strength.</li>
+            </ul>
+
+            <h3>Eat Well:</h3>
+            <ul>
+                <li><strong>Protein:</strong> Include foods like chicken, eggs, and other protein-rich options.</li>
+                <li><strong>Balanced Diet:</strong> Ensure your diet has carbs, fats, fruits, and vegetables.</li>
+            </ul>
+
+            <h3>Rest:</h3>
+            <ul>
+                <li><strong>Sleep:</strong> Aim for 7-9 hours of quality sleep each night.</li>
+                <li><strong>Rest Days:</strong> Take regular breaks between workouts to allow for recovery.</li>
+            </ul>
+
+            <h3>Be Consistent:</h3>
+            <ul>
+                <li><strong>Workouts:</strong> Exercise 3-5 times per week to maintain progress.</li>
+                <li><strong>Track Progress:</strong> Keep track of your improvements to stay motivated.</li>
+            </ul>
+
+            <h3>Timeline:</h3>
+            <ul>
+                <li><strong>First Results:</strong> Expect to see initial results in 4-6 weeks.</li>
+                <li><strong>Visible Changes:</strong> Notice more visible changes in 2-3 months.</li>
+                <li><strong>More Growth:</strong> Achieve significant growth and progress in 3-6 months.</li>
+            </ul>
+        </div>
+
         <div class="about-me">
             <h2>About Me</h2>
             <p>Hello! My name is Karriem, and I'm 14 years old. I have a passion for coding, though I face challenges due to dyslexia, which makes coding more difficult for me. This is my very first website, and I created it primarily for myself. If you're reading this, I might be older now, but I appreciate you taking the time to check out my project. If you want to reach out, you can contact me on Discord at karma.0777, if it's still active.</p>
         </div>
     </div>
-    <button id="toggleMode" style="position: fixed; top: 20px; right: 20px; padding: 10px; background-color: #00bfff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
-        Toggle Light/Dark Mode
-    </button>
-    <script src="script.js"></script>
+    
+
+
+    <!-- Update Tab Button -->
+    <button class="toggle-update-tab">Updates</button>
+
+    <!-- Update Tab Content -->
+    <div class="update-tab" id="updateTab">
+        <div 
+            <h2></h2>
+            
+        </div>
+        <div class="update-tab-content">
+            <!-- Add update content here -->
+            <h3>August 2024</h3>
+            <ul>
+                <li>Added new muscle building tips section.</li>
+                <li>Updated workout plan with additional exercises.</li>
+                <li>Improved website design for better readability.</li>
+            </ul>
+            <h3>July 2024</h3>
+            <ul>
+                <li>Introduced new sleep schedule recommendations.</li>
+                <li>Fixed minor bugs in the page layout.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.toggle-update-tab').addEventListener('click', function() {
+            document.getElementById('updateTab').classList.toggle('open');
+        });
+
+        document.getElementById('closeUpdateTab').addEventListener('click', function() {
+            document.getElementById('updateTab').classList.remove('open');
+        });
+    </script>
 </body>
 </html>
