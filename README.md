@@ -42,6 +42,7 @@ To ensure an optimal experience with the audio features on my workout website, y
    - Type `edge://settings/content/mediaAutoplay` into the address bar and press Enter.
 3. **Set Your Preferences:**
    - Choose whether to allow or block autoplay, or customize settings for specific sites.
+![image](https://github.com/user-attachments/assets/e8406e36-2f0f-4398-80df-977dc465da81)
 
 **Note:** Settings may vary slightly with different browser versions. If you need help with a specific browser or version, please let us know!
 
