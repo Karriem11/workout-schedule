@@ -1,0 +1,113 @@
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Container Styling */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+/* Header Styling */
+h1, h2 {
+    transition: color 0.3s;
+}
+
+h2 {
+    border-bottom: 3px solid;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Subheader Styling */
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+/* List Styling */
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Note Styling */
+.note {
+    font-style: italic;
+    transition: color 0.3s;
+}
+
+/* Light Mode */
+[data-mode="light"] {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+[data-mode="light"] .container {
+    background-color: #ffffff;
+}
+
+[data-mode="light"] h1, [data-mode="light"] h2 {
+    color: #333;
+}
+
+[data-mode="light"] h3 {
+    color: #555;
+}
+
+[data-mode="light"] .note {
+    color: #666;
+}
+
+/* Dark Mode */
+[data-mode="dark"] {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+[data-mode="dark"] .container {
+    background-color: #1e1e1e;
+}
+
+[data-mode="dark"] h1, [data-mode="dark"] h2 {
+    color: #b0bec5;
+}
+
+[data-mode="dark"] h3 {
+    color: #90a4ae;
+}
+
+[data-mode="dark"] .note {
+    color: #b0bec5;
+}
+
+/* Button Styling */
+#toggleMode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #00bfff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#toggleMode:hover {
+    background-color: #0099cc;
+}

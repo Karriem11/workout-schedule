@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Body Workout and Sleep Schedule</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #e0e0e0; /* Light gray text color */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars if video extends beyond viewport */
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place video behind content */
+        }
+        .audio-background {
+            display: none; /* Hide audio element */
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Slightly lighter dark background for container */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            color: #b0bec5; /* Light gray for headings */
+        }
+        h2 {
+            border-bottom: 3px solid #b0bec5; /* Light gray border for headings */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #90a4ae; /* Slightly darker gray for subheadings */
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .note {
+            font-style: italic;
+            color: #b0bec5; /* Light gray for notes */
+            margin-top: 10px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .about-me {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px solid #b0bec5; /* Light gray border for about section */
+        }
+        .about-me h2 {
+            color: #b0bec5;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="https://r2.guns.lol/06f7638c-f842-4926-9b67-e3e10febc2f4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <audio class="audio-background" autoplay loop>
+        <source src="https://cdn.discordapp.com/attachments/1155335336231186462/1270724920044949584/H7ZDDiF.mp3?ex=66b4be4d&is=66b36ccd&hm=1166439b454f38cd44e056104380ad32d1ac3b7fbe0b690f4ed4bcf36a923aff" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <div class="container">
+        <h1>Upper Body Workout and Sleep Schedule</h1>
+
+        <div class="section">
+            <h2>Upper Body Workout Plan</h2>
+
+            <h3>Warm-Up (5-10 minutes)</h3>
+            <ul>
+                <li>Jumping Jacks</li>
+                <li>Arm Circles</li>
+                <li>Push-Up Plus</li>
+                <li>Shoulder Rolls</li>
+            </ul>
+
+            <h3>Strength Training</h3>
+            <ul>
+                <li>Push-Ups (3 sets of 10-15 reps)</li>
+                <li>Dumbbell Rows (3 sets of 12 reps per arm)</li>
+                <li>Bicep Curls (3 sets of 12 reps)</li>
+                <li>Tricep Dips (3 sets of 10-12 reps)</li>
+                <li>Shoulder Press (3 sets of 12 reps)</li>
+                <li>Chest Press (3 sets of 12 reps)</li>
+                <li>Lat Pulldowns (3 sets of 12 reps)</li>
+                <li>Plank (3 sets of 30-60 seconds)</li>
+            </ul>
+
+            <h3>Cool-Down (5-10 minutes)</h3>
+            <ul>
+                <li>Stretching</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Sleep Schedule</h2>
+            <p><strong>Time to Go to Bed:</strong> 10:00 PM</p>
+            <p class="note">Routine: Start winding down 30 minutes before bed. Avoid screens, do some light stretching, read a book, or practice relaxation techniques.</p>
+
+            <p><strong>Time to Wake Up:</strong> 6:00 AM</p>
+            <p class="note">Routine: Start your day with a gentle wake-up, such as a stretch or a refreshing glass of water. Try to get some natural light exposure to help regulate your internal clock.</p>
+        </div>
+
+        <div class="about-me">
+            <h2>About Me</h2>
+            <p>Hi! I'm [Your Name], a fitness enthusiast with a passion for building strength and staying healthy. I love designing effective workout plans and sharing tips to help others achieve their fitness goals. When I'm not working out, you can find me exploring new hobbies, enjoying a good book, or spending time with friends and family. Feel free to connect with me if you have any questions or just want to chat about fitness!</p>
+        </div>
+    </div>
+    <button id="toggleMode" style="position: fixed; top: 20px; right: 20px; padding: 10px; background-color: #00bfff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+        Toggle Light/Dark Mode
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>
