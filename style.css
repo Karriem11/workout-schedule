@@ -1,101 +1,125 @@
-/* Base Styles */
 body {
     font-family: 'Arial', sans-serif;
+    color: #e0e0e0; /* Light gray text color */
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    background-color: #121212; /* Dark background color */
 }
-
-/* Container Styling */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Place video behind content */
+}
 .container {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
+    background-color: #1e1e1e; /* Slightly lighter dark background for container */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: fadeIn 4s forwards; /* Fade-in animation */
 }
-
-/* Header Styling */
 h1, h2 {
-    transition: color 0.3s;
+    color: #b0bec5; /* Light gray for headings */
+    margin: 0;
 }
-
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
 h2 {
-    border-bottom: 3px solid;
+    border-bottom: 3px solid #b0bec5; /* Light gray border for headings */
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-
-/* Subheader Styling */
 h3 {
+    color: #90a4ae; /* Slightly darker gray for subheadings */
     margin-top: 20px;
     margin-bottom: 10px;
-    transition: color 0.3s;
 }
-
-/* List Styling */
 ul {
     list-style-type: square;
     padding-left: 20px;
 }
-
 li {
     margin-bottom: 8px;
 }
-
-/* Note Styling */
+p {
+    margin: 10px 0;
+}
 .note {
     font-style: italic;
-    transition: color 0.3s;
+    color: #b0bec5; /* Light gray for notes */
+    margin-top: 10px;
+}
+.about-me {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 3px solid #b0bec5; /* Light gray border for about section */
 }
 
-/* Light Mode */
-[data-mode="light"] {
-    background-color: #f0f0f0;
-    color: #333;
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Dark background for the scrollbar track */
+    border-radius: 8px; /* Rounded corners for the track */
+}
+::-webkit-scrollbar-thumb {
+    background: #00bfff; /* Bright color for the scrollbar thumb */
+    border-radius: 8px; /* Rounded corners for the thumb */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #009ac7; /* Slightly darker color on hover */
 }
 
-[data-mode="light"] .container {
-    background-color: #ffffff;
+/* Update Tab Styles */
+.update-tab {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #333;
+    color: #fff;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
 }
-
-[data-mode="light"] h1, [data-mode="light"] h2 {
-    color: #333;
+.update-tab.open {
+    transform: translateX(0);
 }
-
-[data-mode="light"] h3 {
-    color: #555;
+.update-tab-header {
+    background-color: #00bfff;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #00bfff;
 }
-
-[data-mode="light"] .note {
-    color: #666;
+.update-tab-content {
+    padding: 15px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
 }
-
-/* Dark Mode */
-[data-mode="dark"] {
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-[data-mode="dark"] .container {
-    background-color: #1e1e1e;
-}
-
-[data-mode="dark"] h1, [data-mode="dark"] h2 {
+.update-tab-content h3 {
     color: #b0bec5;
 }
-
-[data-mode="dark"] h3 {
-    color: #90a4ae;
+.update-tab-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
 }
-
-[data-mode="dark"] .note {
-    color: #b0bec5;
+.update-tab-content li {
+    margin-bottom: 8px;
 }
-
-/* Button Styling */
-#toggleMode {
+.toggle-update-tab {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -105,9 +129,33 @@ li {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    z-index: 1001;
 }
 
-#toggleMode:hover {
-    background-color: #0099cc;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        margin: 10px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .update-tab {
+        width: 100%;
+        height: 100%;
+        transform: translateY(100%);
+    }
+    .update-tab.open {
+        transform: translateY(0);
+    }
 }
