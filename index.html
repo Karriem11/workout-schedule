@@ -30,7 +30,7 @@
                 border-radius: 8px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
                 opacity: 0;
-                animation: fadeIn 0s forwards; /* Fade-in animation */
+                animation: fadeIn 4s forwards; /* Fade-in animation */
             }
             h1, h2 {
                 color: #b0bec5; /* Light gray for headings */
@@ -151,7 +151,7 @@
             }
 
             .overlay-content {
-                background-color: #1e1e1e;
+                background-color: #00000094;
                 color: #e0e0e0;
                 padding: 20px;
                 border-radius: 8px;
@@ -160,6 +160,22 @@
                 width: 100%;
                 /* animation: fadeIn 4s forwards; */ /* Fade-in animation */
             }
+            @keyframes fadeInButton {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px); /* Optional: adds a slight slide-up effect */
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            button {
+                animation: fadeInButton 2s forwards; /* 2s duration for the fade-in animation */
+                opacity: 0; /* Initially hidden */
+            }
+
             .overlay button {
                 background-color: #00bfff;
                 color: #121212;
@@ -189,6 +205,8 @@
                 <h2></h2>
                 <li>If you agree with the terms, please click 'I Accept' to proceed.</li>
                 <button onclick="acceptLicense()">I Accept</button>
+                
+                
             </div>
         </div>
 
