@@ -1,293 +1,303 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Workout and Sleep Schedule for Optimal Health</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            color: #e0e0e0; /* Light gray text color */
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-            background-color: #121212; /* Dark background color */
-        }
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1; /* Place video behind content */
-        }
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #1e1e1e; /* Slightly lighter dark background for container */
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            animation: fadeIn 4s forwards; /* Fade-in animation */
-        }
-        h1, h2 {
-            color: #b0bec5; /* Light gray for headings */
-            margin: 0;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        h2 {
-            border-bottom: 3px solid #b0bec5; /* Light gray border for headings */
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            color: #90a4ae; /* Slightly darker gray for subheadings */
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        p {
-            margin: 10px 0;
-        }
-        .note {
-            font-style: italic;
-            color: #b0bec5; /* Light gray for notes */
-            margin-top: 10px;
-        }
-        .about-me {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 3px solid #b0bec5; /* Light gray border for about section */
-        }
-
-        /* Custom Scrollbar Styles */
-        ::-webkit-scrollbar {
-            width: 12px; /* Width of the scrollbar */
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e1e1e; /* Dark background for the scrollbar track */
-            border-radius: 8px; /* Rounded corners for the track */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #b0bec5; /* Bright color for the scrollbar thumb */
-            border-radius: 8px; /* Rounded corners for the thumb */
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #90a4ae; /* Slightly darker color on hover */
-        }
-
-        /* Calendar Styles */
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-            background-color: #1e1e1e;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        .day {
-            background-color: #2c2c2c;
-            color: #b0bec5;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .day.rest-day {
-            background-color: #b0bec5;
-            color: #121212;
-            font-weight: bold;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-                margin: 10px;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            .calendar {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* License Agreement Overlay Styles */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Slightly opaque black background */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999; /* Ensure overlay is on top of all content */
-            backdrop-filter: blur(10px); /* Apply blur effect */
-            -webkit-backdrop-filter: blur(10px); /* Safari support */
-        }
-
-        .overlay-content {
-            background-color: #00000094;
-            color: #e0e0e0;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-            animation: fadeIn 4s forwards; /* Fade-in animation */
-        }
-        @keyframes fadeInButton {
-            from {
-                opacity: 0;
-                transform: translateY(20px); /* Optional: adds a slight slide-up effect */
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        button {
-            animation: fadeInButton 2s forwards; /* 2s duration for the fade-in animation */
-            opacity: 0; /* Initially hidden */
-        }
-
-        .overlay button {
-            background-color: #b0bec5;
-            color: #121212;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .overlay button:hover {
-            background-color: #1e1e1e;
-        }
-    </style>
-</head>
-<body>
-    <!-- License Agreement Overlay -->
-    <div id="licenseOverlay" class="overlay">
-        <div class="overlay-content">
-            <h2>The MIT License</h2>
-            <p id="copyright"></p>
-            <script>
-                // JavaScript code to update the copyright year
-                const currentYear = new Date().getFullYear();
-
-                // Set the copyright year in the p with id "copyright"
-                document.getElementById('copyright').textContent = `Copyright © ${currentYear}`;
-
-                // Example function for the button click (you can customize this function)
-                function acceptLicense() {
-                    document.getElementById('licenseOverlay').style.display = 'none';
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Ultimate Workout and Sleep Schedule for Optimal Health</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    color: #e0e0e0; /* Light gray text color */
+                    margin: 0;
+                    padding: 0;
+                    overflow-x: hidden; /* Hide horizontal scrollbar */
+                    background-color: #121212; /* Dark background color */
                 }
-            </script>
-            <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-            <p>If you agree with the terms, please click 'I Accept' to proceed.</p>
-            <button onclick="acceptLicense()">I Accept</button>
-        </div>
-    </div>
+                .video-background {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: -1; /* Place video behind content */
+                }
+                .container {
+                    max-width: 900px;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #1e1e1e; /* Slightly lighter dark background for container */
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+                    opacity: 0;
+                    animation: fadeIn 4s forwards; /* Fade-in animation */
+                }
+                h1, h2 {
+                    color: #b0bec5; /* Light gray for headings */
+                    margin: 0;
+                }
+                h1 {
+                    font-size: 2.5rem;
+                    margin-bottom: 20px;
+                }
+                h2 {
+                    border-bottom: 3px solid #b0bec5; /* Light gray border for headings */
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                }
+                h3 {
+                    color: #90a4ae; /* Slightly darker gray for subheadings */
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
+                ul {
+                    list-style-type: square;
+                    padding-left: 20px;
+                }
+                li {
+                    margin-bottom: 8px;
+                }
+                p {
+                    margin: 10px 0;
+                }
+                .note {
+                    font-style: italic;
+                    color: #b0bec5; /* Light gray for notes */
+                    margin-top: 10px;
+                }
+                .about-me {
+                    margin-top: 40px;
+                    padding-top: 20px;
+                    border-top: 3px solid #b0bec5; /* Light gray border for about section */
+                }
 
-    <!-- Background Video -->
-    <video class="video-background" autoplay muted loop>
-        <source src="https://r2.guns.lol/06f7638c-f842-4926-9b67-e3e10febc2f4.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+                /* Custom Scrollbar Styles */
+                ::-webkit-scrollbar {
+                    width: 12px; /* Width of the scrollbar */
+                }
+                ::-webkit-scrollbar-track {
+                    background: #1e1e1e; /* Dark background for the scrollbar track */
+                    border-radius: 8px; /* Rounded corners for the track */
+                }
+                ::-webkit-scrollbar-thumb {
+                    background: #b0bec5; /* Bright color for the scrollbar thumb */
+                    border-radius: 8px; /* Rounded corners for the thumb */
+                    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+                }
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #1e1e1e; /* Slightly darker color on hover */
+                }
 
-    <!-- Main Content -->
-    <div class="container">
-        <h1>Ultimate Workout and Sleep Schedule for Optimal Health</h1>
+                /* Calendar Styles */
+                .calendar {
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    gap: 10px;
+                    margin-top: 20px;
+                    background-color: #1e1e1e;
+                    padding: 10px;
+                    border-radius: 8px;
+                }
+                .day {
+                    background-color: #2c2c2c;
+                    color: #b0bec5;
+                    padding: 10px;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+                .day.rest-day {
+                    background-color: #b0bec5;
+                    color: #121212;
+                    font-weight: bold;
+                }
 
-        <div class="section">
-            <h3>Warm-Up (5-10 minutes)</h3>
-            <ul>
-                <li>Jumping Jacks</li>
-                <li>Arm Circles</li>
-                <li>Push-Up Plus</li>
-                <li>Shoulder Rolls</li>
-            </ul>
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
 
-            <h3>Legs Workouts</h3>
-            <ul>
-                <li>Dumbbell Squats (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Deadlifts (3 sets of 12 reps)</li>
-                <li>Dumbbell Lunges (3 sets of 12 reps per leg)</li>
-                <li>Dumbbell Step-Ups (3 sets of 12 reps per leg)</li>
-            </ul>
+                /* Responsive Styles */
+                @media (max-width: 600px) {
+                    .container {
+                        padding: 15px;
+                        margin: 10px;
+                    }
+                    h1 {
+                        font-size: 2rem;
+                    }
+                    .calendar {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                }
 
-            <h3>Arm Workouts</h3>
-            <ul>
-                <li>Dumbbell Bicep Curls (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Tricep Extensions (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Hammer Curls (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Kickbacks (3 sets of 12-15 reps)</li>
-            </ul>
+                /* License Agreement Overlay Styles */
+                .overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.8); /* Slightly opaque black background */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 9999; /* Ensure overlay is on top of all content */
+                    backdrop-filter: blur(10px); /* Apply blur effect */
+                    -webkit-backdrop-filter: blur(10px); /* Safari support */
+                }
 
-            <h3>Back Workouts</h3>
-            <ul>
-                <li>Dumbbell Rows (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Deadlifts (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Pullovers (3 sets of 12-15 reps)</li>
-                <li>Dumbbell Shrugs (3 sets of 12-15 reps)</li>
-            </ul>
+                .overlay-content {
+                    background-color: #00000094;
+                    color: #e0e0e0;
+                    padding: 20px;
+                    border-radius: 8px;
+                    text-align: center;
+                    max-width: 600px;
+                    width: 100%;
+                    animation: fadeIn 4s forwards; /* Fade-in animation */
+                }
+                @keyframes fadeInButton {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px); /* Optional: adds a slight slide-up effect */
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
 
-            <h3>Cool Down (5 minutes)</h3>
-            <ul>
-                <li>Stretching (Hamstrings, Quads, Shoulders)</li>
-                <li>Deep Breathing</li>
-            </ul>
+                button {
+                    animation: fadeInButton 2s forwards; /* 2s duration for the fade-in animation */
+                    opacity: 0; /* Initially hidden */
+                }
 
-            <h2>Weekly Schedule</h2>
-            <div class="calendar">
-                <div class=""day rest-day">Mon</div>
-                <div class="day">Tue</div>
-                <div class="day">Wed</div>
-                <div class="day rest-day">Thu</div>
-                <div class="day">Fri</div>
-                <div class="day">Sat</div>
-                <div class="day rest-day">Sun</div>
+                .overlay button {
+                    background-color: #b0bec5;
+                    color: #121212;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    margin-top: 20px;
+                }
+                    overlay button:hover {
+                    background-color: #b0bec5;
+                }
+            </style>
+        </head>
+        <body>
+            <!-- License Agreement Overlay -->
+            <div id="licenseOverlay" class="overlay">
+                <div class="overlay-content">
+                    <h2>The MIT License</h2>
+                    <p id="copyright"></p>
+                    <script>
+                            // JavaScript code to update the copyright year
+                            const currentYear = new Date().getFullYear();
+
+                            // Set the copyright year in the p with id "copyright"
+                            document.getElementById('copyright').textContent = `Copyright © ${currentYear}`;
+
+                            // Example function for the button click (you can customize this function)
+                            function acceptLicense() {
+                                alert("License accepted!");
+                        }
+                    </script>
+                    <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+                    <p>If you agree with the terms, please click 'I Accept' to proceed.</p>
+                    <button onclick="acceptLicense()">I Accept</button>
+                </div>
             </div>
-        </div>
-         <h2>Sleep Schedule</h2>
+
+            <!-- Background Video -->
+            <video class="video-background" autoplay muted loop>
+                <source src="https://r2.guns.lol/06f7638c-f842-4926-9b67-e3e10febc2f4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Main Content -->
+            <div class="container">
+                     <h2>  Ultimate Workout and Sleep Schedule for Optimal Health</h2>
+
+                <div class="section">
+                    <h3>Warm-Up (5-10 minutes)</h3>
+                    <ul>
+                        <li>Jumping Jacks</li>
+                        <li>Arm Circles</li>
+                        <li>Push-Up Plus</li>
+                        <li>Shoulder Rolls</li>
+                    </ul>
+
+                    <h3>Legs Workouts</h3>
+                    <ul>
+                        <li>Dumbbell Squats (3 sets of 12-15 reps)</li>
+                        <li>Dumbbell Deadlifts (3 sets of 12 reps)</li>
+                        <li>Dumbbell Lunges (3 sets of 12 reps per leg)</li>
+                        <li>Dumbbell Step-Ups (3 sets of 12 reps per leg)</li>
+                    </ul>
+
+                    <h3>Arm Workouts</h3>
+                    <ul>
+                        <li>Dumbbell Bicep Curls (3 sets of 12-15 reps)</li>
+                        <li>Dumbbell Tricep Extensions (3 sets of 12-15 reps)</li>
+                        <li>Dumbbell Hammer Curls (3 sets of 12-15 reps)</li>
+                    </ul>
+
+                    <h3>Abs Workouts</h3>
+                    <ul>
+                        <li>Crunches (3 sets of 15-20 reps)</li>
+                        <li>Leg Raises (3 sets of 12-15 reps)</li>
+                        <li>Russian Twists (3 sets of 20 reps per side)</li>
+                        <li>Mountain Climbers (3 sets of 30-60 seconds)</li>
+                    </ul>
+
+                    <h3>Cool-Down (5-10 minutes)</h3>
+                    <ul>
+                        <li>Stretching Exercises (Full Body)</li>
+                        <li>Deep Breathing Exercises</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h2>Sleep Schedule</h2>
                     <p><strong>Time to Go to Bed:</strong> 10:00 PM</p>
                     <p class="note">It's important to go to bed at the same time every night to maintain a consistent sleep schedule.</p>
                     <p><strong>Time to Wake Up:</strong> 6:00 AM</p>
-                    <p class="note">Rest days are crucial for muscle recovery and overall fitness. It’s important to take these breaks to allow your body to heal and become stronger. Rest days are highlighted in blue for easy reference.
-
-</p>
+                    <p class="note">Try to wake up at the same time every morning, even on weekends, to keep your body's internal clock regulated.</p>
 
                 <div class="section">
-        <div class="about-me">
-            <h2>About Me</h2>
-            <p>Welcome to my ultimate workout and sleep schedule guide! This guide provides a comprehensive plan to help you achieve your fitness goals and maintain a healthy lifestyle. Follow the exercises and schedule outlined above to maximize your results.</p>
-        </div>
-    </div>
-</body>
-</html>
+                    <h2>Workout Schedule</h2>
+                    <div class="calendar">
+                        <div class="day rest-day">Sun</div>
+                        <div class="day">Mon</div>
+                        <div class="day">Tue</div>
+                        <div class="day rest-day">Wed</div>
+                        <div class="day">Thu</div>
+                        <div class="day">Fri</div>
+                        <div class="day rest-day">Sat</div>
+                    </div>
+                    <p class="note">Rest days are crucial for muscle recovery and overall fitness. It’s important to take these breaks to allow your body to heal and become stronger. Rest days are highlighted in blue for easy reference.</p>
+                </div>
+
+                <div class="about-me">
+                    <h2>About Me</h2>
+                    <p>Hello! My name is Karriem, and I'm 14 years old. I have a passion for coding, though I face challenges due to dyslexia, which makes coding more difficult for me. This is my very first website, and I created it primarily for myself. If you're reading this, I might be older now, but I appreciate you taking the time to check out my project.</p>
+                </div>
+            </div>
+
+            <!-- JavaScript -->
+            <script>
+                function acceptLicense() {
+                    document.getElementById('licenseOverlay').style.display = 'none';
+                }
+                window.onload = function() {
+                    document.getElementById('licenseOverlay').style.display = 'flex';
+                }
+            </script>
+        </body>
+        </html>
