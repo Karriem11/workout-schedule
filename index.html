@@ -195,8 +195,20 @@
     <!-- License Agreement Overlay -->
     <div id="licenseOverlay" class="overlay">
         <div class="overlay-content">
-            <h2>License Agreement</h2>
+            <h2>The MIT License</h2>
             <p id="copyright"></p>
+            <script>
+                    // JavaScript code to update the copyright year
+                    const currentYear = new Date().getFullYear();
+
+                    // Set the copyright year in the p with id "copyright"
+                    document.getElementById('copyright').textContent = `Copyright © ${currentYear}`;
+
+                    // Example function for the button click (you can customize this function)
+                    function acceptLicense() {
+                        alert("License accepted!");
+                }
+            </script>
             <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
             <p>If you agree with the terms, please click 'I Accept' to proceed.</p>
             <button onclick="acceptLicense()">I Accept</button>
